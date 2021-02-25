@@ -1,5 +1,4 @@
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-const { q, client } = require("../fauna/faunaClient");
 
 exports.handler = async (req, res) => {
   let eventType;
@@ -10,6 +9,7 @@ exports.handler = async (req, res) => {
     // Retrieve the event by verifying the signature using the raw body and secret.
     let event;
     let signature = req.headers["stripe-signature"];
+    console.log('signature: ', signature);
 
     try {
       event = stripe.webhooks.constructEvent(
@@ -18,7 +18,7 @@ exports.handler = async (req, res) => {
         process.env.STRIPE_WEBHOOK_SECRET
       );
     } catch (err) {
-      console.log("err: ", err);
+      console.log("Error verifying stripe webhook: ", err);
       res.status(400);
       res.send({
         error: {
@@ -42,36 +42,15 @@ exports.handler = async (req, res) => {
 
   switch (eventType) {
     case "checkout.session.completed":
-      const { user_id } = data.object.metadata;
 
       try {
-        await client
-          .query(q.Get(q.Match(q.Index("users_index"), user_id)))
-          .then(async (response) => {
-            console.log("response: ", response.ref);
-            await client
-              .query(
-                q.Update(response.ref, {
-                  data: {
-                    plan: "premium",
-                    stripeCustomerId: data.object.customer,
-                    lastPayment: {
-                      type: "monthly",
-                      date: q.Now(),
-                    },
-                  },
-                })
-              )
-              .then((response) => {
-                console.log("user: ", response.data);
-              });
-          });
+        const email = data.object.customer_details.email
       } catch (e) {
         console.log("error", e);
         res.status(500);
         res.send({
           error: {
-            message: "Error updating fauna db" + e.message,
+            message: "Error sending email: " + e.message,
           },
         });
         return;

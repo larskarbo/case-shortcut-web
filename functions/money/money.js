@@ -11,13 +11,7 @@ app.use(bodyParser.json({
 const router = express.Router();
 
 router.post("/checkout", require("./checkout").handler);
-// router.post("/webhook", require("./webhook").handler);
-// router.post("/customer-portal/:stripeCustomerId", require("./customer-portal").handler);
-// router.post("/testerror", require("./testerror").handler);
-
-// router.get('/collections', (req, res) => {
-//   res.json({foo: "bars"});
-// });
+router.post("/webhook", require("./webhook").handler);
 
 app.use("/.netlify/functions/money", router); // path must route to lambda
 

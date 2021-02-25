@@ -11,6 +11,7 @@ import axios from "axios";
 import { loadStripe } from "@stripe/stripe-js/pure";
 export const BASE = `/.netlify/functions/`;
 
+
 export default function () {
   const [loadingPay, setLoadingPay] = useState(false);
   const onPressPay = () => {
@@ -34,30 +35,30 @@ export default function () {
   return (
     <div className="flex flex-col items-center bg-gradient-to-tr from-gray-100 pt-0 to-yellow-50 min-h-screen">
       <Helmet>
-        <meta property="og:url" content="https://goimitate.com/" />
-        <link rel="canonical" href="https://goimitate.com/" />
-        <title>Imitate - Learn perfect pronunciation</title>
-        <meta property="og:title" content={"Imitate - Learn perfect pronunciation"} />
-        <meta name="twitter:title" content={"Imitate - Learn perfect pronunciation"} />
-        <meta name="title" content={"Imitate - Learn perfect pronunciation"} />
+        <meta property="og:url" content="https://caseshortcut.com/" />
+        <link rel="canonical" href="https://caseshortcut.com/" />
+        <title>Case Shortcut - Transform text case instantly</title>
+        <meta property="og:title" content={"Case Shortcut - Transform text case instantly"} />
+        <meta name="twitter:title" content={"Case Shortcut - Transform text case instantly"} />
+        <meta name="title" content={"Case Shortcut - Transform text case instantly"} />
 
         <meta
           name="description"
-          content="Imitate is a pronunciation learning tool that lets you achieve near-native pronunciation with the help of real-life video."
+          content="Case Shortcut lets you transform any case from any app using a global shortcut to UPPERCASE, lowercase, Title Case and more"
         />
         <meta
           property="og:description"
-          content="Imitate is a pronunciation learning tool that lets you achieve near-native pronunciation with the help of real-life video."
+          content="Case Shortcut lets you transform any case from any app using a global shortcut to UPPERCASE, lowercase, Title Case and more"
         />
         <meta
           name="twitter:description"
-          content="Imitate is a pronunciation learning tool that lets you achieve near-native pronunciation with the help of real-life video."
+          content="Case Shortcut lets you transform any case from any app using a global shortcut to UPPERCASE, lowercase, Title Case and more"
         />
 
-        <meta property="og:image" content="https://goimitate.com/hero.png" />
-        <meta name="twitter:image" content="https://goimitate.com/hero.png" />
+        {/* <meta property="og:image" content="https://caseshortcut.com/hero.png" />
+        <meta name="twitter:image" content="https://caseshortcut.com/hero.png" /> */}
 
-        <meta property="og:site_name" content="Imitate" />
+        <meta property="og:site_name" content="Case Shortcut" />
         <meta name="twitter:card" content="summary_large_image" />
 
         <meta name="twitter:creator" content={"larskarbo"} />

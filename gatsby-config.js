@@ -39,8 +39,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Imitate`,
-        short_name: `Imitate`,
+        name: `Case Shortcut`,
+        short_name: `Case Shortcut`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#663399`,
