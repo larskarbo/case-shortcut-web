@@ -29,7 +29,8 @@
     "react-dom": "16.13.1",
     "react-helmet": "^6.1.0",
     "react-icons": "^4.1.0",
-    "tailwindcss": "^2.0.2"
+    "tailwindcss": "^2.0.2",
+    "postcss": "^8.2.2",
   },
   "devDependencies": {
     "@types/react": "~16.9.35",
