@@ -5,31 +5,31 @@ import { navigate } from "gatsby";
 import Helmet from "react-helmet";
 import { AiFillQuestionCircle } from "react-icons/ai";
 import { Header } from "../course/Header";
-import { Demo } from "./Demo";
-import axios from "axios"
+import { Demo } from "../components/Demo";
+import axios from "axios";
 
-import {loadStripe} from '@stripe/stripe-js/pure';
+import { loadStripe } from "@stripe/stripe-js/pure";
 export const BASE = `/.netlify/functions/`;
 
 export default function () {
-  const [loadingPay, setLoadingPay] = useState(false)
+  const [loadingPay, setLoadingPay] = useState(false);
   const onPressPay = () => {
-    setLoadingPay(true)
-    axios.post(BASE + "money/checkout", {
-      priceId: location.href.includes("localhost") ? "price_1IOhhODRWTS9VCXGT14MivCz" : "price_1IOhYpDRWTS9VCXGI1J8vpMq",
-    }).then(async function ({data}) {
-      
-
-      const stripe = await loadStripe(process.env.GATSBY_STRIPE_PUB_KEY);
-      stripe
-        .redirectToCheckout({
-          sessionId: data.sessionId,
-        })
-        .then((res) => {
-          
-        });
-    });
-  }
+    setLoadingPay(true);
+    axios
+      .post(BASE + "money/checkout", {
+        priceId: location.href.includes("localhost")
+          ? "price_1IOhhODRWTS9VCXGT14MivCz"
+          : "price_1IOhYpDRWTS9VCXGI1J8vpMq",
+      })
+      .then(async function ({ data }) {
+        const stripe = await loadStripe(process.env.GATSBY_STRIPE_PUB_KEY);
+        stripe
+          .redirectToCheckout({
+            sessionId: data.sessionId,
+          })
+          .then((res) => {});
+      });
+  };
 
   return (
     <div className="flex flex-col items-center bg-gradient-to-tr from-gray-100 pt-0 to-yellow-50 min-h-screen">
@@ -68,7 +68,7 @@ export default function () {
 
         <div className="pt-16">
           <button
-          onClick={onPressPay}
+            onClick={onPressPay}
             style={{
               backgroundColor: "#ff502f",
             }}
@@ -77,13 +77,14 @@ export default function () {
           
           `}
           >
-            {loadingPay ? 
-            <span className="font-bold">Loading superpower...</span>
-            
-          :<>
-            <span className="font-bold">Get the superpower</span>
-            <span className="font-light"> (5$)</span>
-          </>}
+            {loadingPay ? (
+              <span className="font-bold">Loading superpower...</span>
+            ) : (
+              <>
+                <span className="font-bold">Get the superpower</span>
+                <span className="font-light"> (5$)</span>
+              </>
+            )}
           </button>
           <div className="text-xs font-light text-gray-600 pt-2 pl-2">MacOS 11+. Works across all apps.</div>
         </div>
