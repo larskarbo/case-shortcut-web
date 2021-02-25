@@ -5,8 +5,32 @@ import { navigate } from "gatsby";
 import Helmet from "react-helmet";
 import { AiFillQuestionCircle } from "react-icons/ai";
 import { Header } from "../course/Header";
+import { Demo } from "./Demo";
+import axios from "axios"
+
+import {loadStripe} from '@stripe/stripe-js/pure';
+export const BASE = `/.netlify/functions/`;
 
 export default function () {
+  const [loadingPay, setLoadingPay] = useState(false)
+  const onPressPay = () => {
+    setLoadingPay(true)
+    axios.post(BASE + "money/checkout", {
+      priceId: location.href.includes("localhost") ? "price_1IOhhODRWTS9VCXGT14MivCz" : "price_1IOhYpDRWTS9VCXGI1J8vpMq",
+    }).then(async function ({data}) {
+      
+
+      const stripe = await loadStripe(process.env.GATSBY_STRIPE_PUB_KEY);
+      stripe
+        .redirectToCheckout({
+          sessionId: data.sessionId,
+        })
+        .then((res) => {
+          
+        });
+    });
+  }
+
   return (
     <div className="flex flex-col items-center bg-gradient-to-tr from-gray-100 pt-0 to-yellow-50 min-h-screen">
       <Helmet>
@@ -40,14 +64,32 @@ export default function () {
       </Helmet>
 
       <div className="max-w-lg flex flex-col items-center">
-        <h1 className="text-5xl font-medium text-black text-center mt-20 mb-8">
-          <div className="mb-1">Change text case instantly.</div>
-          {/* <div className="bg-blue-200 inline-block text-blue-800 rounded-md p-2 px-4">
-            play any media in sync
-                </div> */}
-        </h1>
+        <Demo />
+
+        <div className="pt-16">
+          <button
+          onClick={onPressPay}
+            style={{
+              backgroundColor: "#ff502f",
+            }}
+            className={`
+          duration-150 px-4 py-4 rounded  text-white
+          
+          `}
+          >
+            {loadingPay ? 
+            <span className="font-bold">Loading superpower...</span>
+            
+          :<>
+            <span className="font-bold">Get the superpower</span>
+            <span className="font-light"> (5$)</span>
+          </>}
+          </button>
+          <div className="text-xs font-light text-gray-600 pt-2 pl-2">MacOS 11+. Works across all apps.</div>
+        </div>
+
         <div className="w-full font-light text-gray-900">
-          <h2 className="font-bold pt-8 text-lg pb-1">Why?</h2>
+          <h2 className="font-bold pt-8 text-lg pb-1">🤔 Why?</h2>
           <p>You save multiple seconds every day. And you will feel like you are a bit better than everyone else.</p>
 
           <h2 className="font-bold pt-8 text-lg pb-1">Will this bloat my mac?</h2>
