@@ -1,3 +1,5 @@
+const { sendEmail } = require("./ses");
+
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 exports.handler = async (req, res) => {
@@ -45,6 +47,19 @@ exports.handler = async (req, res) => {
 
       try {
         const email = data.object.customer_details.email
+        await sendEmail(email, "Case Shortcut download link", `
+        Thanks for buying Case Shortcut!
+
+        You can download the app at: https://caseshortcut.com/Case_Shortcut.dmg?token=130593482432
+
+        Let me know if you have any problems!
+
+        Feel free to reply to this mail.
+
+        Best,
+
+        Lars Karbo
+        `)
       } catch (e) {
         console.log("error", e);
         res.status(500);
@@ -81,5 +96,7 @@ exports.handler = async (req, res) => {
       return;
   }
 
-  res.sendStatus(200);
+  res.send({
+    success: true
+  });
 };

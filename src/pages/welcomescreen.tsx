@@ -65,7 +65,14 @@ export default function () {
             <h2 className="py-2 text-2xl font-semibold">Usage</h2>
 
             <p className="py-2 pb-4">
-              Go to a textbox in any app, and mark some text. Then press on of these combinations:
+              Go to a textbox in any app, and mark some text. Then press the menu bar icon, and the case you want:
+            </p>
+
+            <StaticImage className="max-w-md" src="barbar.png" alt="Permissions" />
+            <textarea value={`You can trY iT hERE!\n\nTry title case on me`} className="rounded p-4 my-4 h-36 border bg-white"></textarea>
+
+            <p className="py-2 pb-4">
+              You can also use these combinations for UPPERCASE and lowercase
             </p>
             <div className="flex items-center">
               <Key className="mr-4" letter="⌃"></Key>
@@ -76,12 +83,7 @@ export default function () {
               <div className="mr-4">or</div>
               <Key className="mr-4" letter="▼"></Key>
             </div>
-            <textarea className="rounded p-4 my-4 border bg-white">
-                You can trY iT hERE!
-
-                Try title case on me
-            </textarea>
-            <h2 className="py-2 text-2xl font-semibold">Feedback</h2>
+            <h2 className="py-2 text-2xl font-semibold mt-8">Feedback</h2>
             <p className="py-2 ">
               If you have feedback, suggestions, questions or problems, reach out to me{" "}
               <a className="underline text-blue-500" href="https://twitter.com/larskarbo">
