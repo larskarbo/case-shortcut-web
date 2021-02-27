@@ -76,21 +76,7 @@ export const Demo = () => {
       delay: 1000,
       action: () => {
         setDown(true);
-        setText("Change text case instantly.");
-      },
-    },
-    {
-      delay: 1000,
-      action: () => {
-        setDown(true);
         setText("change text case instantly.");
-      },
-    },
-    {
-      delay: 1000,
-      action: () => {
-        setUp(true);
-        setText("Change text case instantly.");
       },
     },
     {
@@ -115,7 +101,7 @@ export const Demo = () => {
           <Marked marked={marked} text={text}></Marked>
         </div>
       </h1>
-      <div className="flex">
+      <div className="hidden md:flex">
         <Key active={CTR} className="mr-4" letter="⌃" text={"control"}></Key>
         <Key active={OPT} className="mr-4" letter="⌥" text={"option"}></Key>
         <Key active={CMD} className="mr-4" letter="⌘" text={"command"}></Key>

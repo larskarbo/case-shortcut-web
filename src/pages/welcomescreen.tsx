@@ -13,7 +13,7 @@ export default function () {
 
       <div className="max-w-2xl">
         <div className="py-12 font-light max-w-lg m-auto text-center">
-          I couldn't figure out how to make the native app window work, so just pretend this one is real ↓
+          I couldn't figure out how to launch an app window, so just pretend this one is real ↓
         </div>
         <div className="window macwindow shadow-2xl w-full mb-32">
           <div className="titlebar macwindow">
@@ -76,7 +76,11 @@ export default function () {
               <div className="mr-4">or</div>
               <Key className="mr-4" letter="▼"></Key>
             </div>
-            <textarea className="rounded p-4 my-4 border bg-white">You can trY iT hERE!</textarea>
+            <textarea className="rounded p-4 my-4 border bg-white">
+                You can trY iT hERE!
+
+                Try title case on me
+            </textarea>
             <h2 className="py-2 text-2xl font-semibold">Feedback</h2>
             <p className="py-2 ">
               If you have feedback, suggestions, questions or problems, reach out to me{" "}
