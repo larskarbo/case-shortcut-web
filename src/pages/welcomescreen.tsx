@@ -69,7 +69,7 @@ export default function () {
             </p>
 
             <StaticImage className="max-w-md" src="barbar.png" alt="Permissions" />
-            <textarea value={`You can trY iT hERE!\n\nTry title case on me`} className="rounded p-4 my-4 h-36 border bg-white"></textarea>
+            <textarea defaultValue={`You can trY iT hERE!\n\nTry title case on me`} className="rounded p-4 my-4 h-36 border bg-white"></textarea>
 
             <p className="py-2 pb-4">
               You can also use these combinations for UPPERCASE and lowercase

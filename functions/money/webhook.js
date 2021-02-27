@@ -1,6 +1,7 @@
 const { sendEmail } = require("./ses");
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+var md = require('markdown-it')();
 
 exports.handler = async (req, res) => {
   let eventType;
@@ -47,10 +48,11 @@ exports.handler = async (req, res) => {
 
       try {
         const email = data.object.customer_details.email
-        await sendEmail(email, "Case Shortcut download link", `
+        const link = `https://caseshortcut.com/Case_Shortcut.dmg?token=130593482432`
+        const markdown = `
         Thanks for buying Case Shortcut!
 
-        You can download the app at: https://caseshortcut.com/Case_Shortcut.dmg?token=130593482432
+        You can download the app at: 
 
         Let me know if you have any problems!
 
@@ -59,7 +61,10 @@ exports.handler = async (req, res) => {
         Best,
 
         Lars Karbo
-        `)
+        `
+
+        const emailContent = md.render(markdown).replaceAll("LINK", link)
+        await sendEmail(email, "Case Shortcut download link",emailContent)
       } catch (e) {
         console.log("error", e);
         res.status(500);
