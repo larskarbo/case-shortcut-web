@@ -1,16 +1,12 @@
 import { StaticImage } from "gatsby-plugin-image";
 import React, { useEffect, useRef, useState } from "react";
 
-import { navigate } from "gatsby";
 import Helmet from "react-helmet";
-import { AiFillQuestionCircle } from "react-icons/ai";
-import { Header } from "../course/Header";
 import { Demo } from "../components/Demo";
 import axios from "axios";
-
+import logo from "./logostroked.svg";
 import { loadStripe } from "@stripe/stripe-js/pure";
 export const BASE = `/.netlify/functions/`;
-
 
 export default function () {
   const [loadingPay, setLoadingPay] = useState(false);
@@ -67,14 +63,19 @@ export default function () {
       <div className="max-w-lg flex flex-col items-center">
         <Demo />
 
-        <div className="pt-16">
+        <div className="pt-12">
+          <div className="flex flex-col items-center justify-center mb-8">
+            <img src={logo} className="w-24" />
+            <div className="text-xs font-medium pt-2">Case Shortcut.app</div>
+          </div>
+
           <button
             onClick={onPressPay}
             style={{
               backgroundColor: "#ff502f",
             }}
             className={`
-          duration-150 px-4 py-4 rounded  text-white
+          duration-150 px-4 py-5 rounded  text-white flex items-center
           
           `}
           >
@@ -83,7 +84,7 @@ export default function () {
             ) : (
               <>
                 <span className="font-bold">Get the superpower</span>
-                <span className="font-light"> (5$)</span>
+                <span className="font-light pl-1">(5$)</span>
               </>
             )}
           </button>
@@ -100,7 +101,7 @@ export default function () {
           <h2 className="font-bold pt-8 text-lg pb-1">Supported cases</h2>
           <ul className="list-disc list-inside pl-4">
             <li>This is an example senctence. (sentence case)</li>
-            <li>This Is an Example Sentence. (title case)</li>
+            <li>this Is an Example Sentence. (title case)</li>
             <li>THIS IS AN EXAMPLE SENTENCE. (uppercase)</li>
             <li>this is an example sentence. (lowercase)</li>
           </ul>
@@ -140,153 +141,5 @@ export default function () {
         <div className="pb-24"></div>
       </div>
     </div>
-  );
-}
-
-const languages = [
-  {
-    name: "English",
-    code: "us",
-  },
-  {
-    name: "Chinese",
-    code: "cn",
-  },
-  {
-    name: "Russian",
-    code: "ru",
-  },
-  {
-    name: "German",
-    code: "de",
-  },
-  {
-    name: "Norwegian",
-    code: "no",
-  },
-  {
-    name: "Other",
-  },
-];
-
-export function Other() {
-  const [language, setLanguage] = useState(null);
-  const [sent, setSent] = useState(false);
-  const formRef = useRef();
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    fetch("/.netlify/functions/newsletter", {
-      method: "POST",
-      body: JSON.stringify({
-        email: formRef.current.email.value,
-        language: formRef.current.otherLanguage?.value || language.name.toLowerCase(),
-      }),
-    })
-      .then((a) => {
-        console.log("a: ", a);
-
-        setSent(true);
-      })
-      .catch((err) => {});
-  };
-
-  if (language) {
-    return (
-      <div className="mt-12 bg-yellow-50 border border-yellow-400 rounded px-8 py-4">
-        <button
-          onClick={() => {
-            setLanguage(null);
-            setSent(false);
-          }}
-          className="text-xs mb-4 hover:underline text-gray-800 font-light"
-        >
-          ← Go back
-        </button>
-        <form ref={formRef} onSubmit={onSubmit}>
-          <div className="flex items-center mb-4">
-            {language.code ? (
-              <img
-                className="rounded-full ring ring-gray-300 shadow "
-                src={`https://hatscripts.github.io/circle-flags/flags/${language.code}.svg`}
-                width="32"
-              />
-            ) : (
-              <AiFillQuestionCircle size={32} color="gray" />
-            )}
-            <div className="text-xl font-medium  ml-3">{language.name}</div>
-          </div>
-          {sent ? (
-            <>
-              <h2 className="text-black font-bold mb-2 ">Thank you!</h2>
-              <p className="text-black mb-2 ">I will let you know when it is available.</p>
-            </>
-          ) : language.name == "Other" ? (
-            <>
-              <h2 className="text-black font-bold mb-2 ">Which language would you like Imitate for?</h2>
-              <div className=" mb-2 flex border border-gray-300 w-96 rounded overflow-hidden text-sm">
-                <input
-                  required
-                  name="otherLanguage"
-                  className="flex-grow px-4 py-2"
-                  type="texts"
-                  placeholder="A language..."
-                />
-              </div>
-              <div className=" mb-4 flex border border-gray-300 w-96 rounded overflow-hidden text-sm">
-                <input required name="email" className="flex-grow px-4 py-2" type="email" placeholder="Your email" />
-              </div>
-              <button
-                className=" mb-2 px-4 py-2 bg-yellow-100 hover:bg-yellow-200 border border-gray-400 hover:border-gray-500 shadow-sm text-sm rounded transition-colors"
-                type="submit"
-              >
-                Get notified ⚡
-              </button>
-            </>
-          ) : (
-            <>
-              <h2 className="text-black font-bold mb-2 ">Imitate for {language.name} is not yet available.</h2>
-              <p className="text-black mb-2 ">Enter your email to be one of the first to try it.</p>
-              <div className=" mb-4 flex border border-gray-300 w-96 rounded overflow-hidden text-sm">
-                <input required name="email" className="flex-grow px-4 py-2" type="email" placeholder="Your email" />
-              </div>
-              <button
-                className=" mb-2 px-4 py-2 bg-yellow-100 hover:bg-yellow-200 border border-gray-400 hover:border-gray-500 shadow-sm text-sm rounded transition-colors"
-                type="submit"
-              >
-                Sign up for the {language.name} wait list ⚡
-              </button>
-            </>
-          )}
-          {/* <p className="text-xs font-light opacity-60 mb-2 mt-1 ">Currently available for French learners only.</p> */}
-        </form>
-      </div>
-    );
-  }
-
-  return (
-    <>
-      <h3 className="mt-12 mb-4 text-lg font-medium text-center">Other languages:</h3>
-      <div className="flex flex-wrap justify-center">
-        {languages.map((l) => (
-          <button
-            onClick={() => setLanguage(l)}
-            key={l.name}
-            className="bg-gray-50 border border-gray-400 rounded px-8 py-4 flex items-center mr-4 mb-4 w-5/12 hover:bg-gray-100 transition-colors"
-          >
-            {l.code ? (
-              <img
-                className="rounded-full ring ring-gray-300 shadow "
-                src={`https://hatscripts.github.io/circle-flags/flags/${l.code}.svg`}
-                width="32"
-              />
-            ) : (
-              <AiFillQuestionCircle size={32} color="gray" />
-            )}
-            <div className="text-xl font-light text-gray-900 ml-3 mr-4">{l.name}</div>
-          </button>
-        ))}
-      </div>
-    </>
   );
 }

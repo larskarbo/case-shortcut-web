@@ -158,7 +158,7 @@ const Marked = ({ text, marked }) => {
   );
 };
 
-const Key = ({ letter, active:ahere = false, className, defHeight = true, center = false }) => {
+export const Key = ({ letter, active:ahere = false, className, defHeight = true, center = false }) => {
   const [activeOverride, setActiveOverride] = useState(false)
   const active = activeOverride || ahere
   return (
@@ -170,7 +170,7 @@ const Key = ({ letter, active:ahere = false, className, defHeight = true, center
   ${active ? "bg-gray-900" : "bg-gray-600"} 
   
   ${active ? "" : "shadow-lg"}
-   text-white `}
+   text-white select-none `}
     >
       <div
         className={`
