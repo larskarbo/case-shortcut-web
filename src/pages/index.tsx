@@ -109,14 +109,22 @@ export default function () {
             <h2 className="font-bold pt-8 text-lg pb-1">Will this bloat my mac?</h2>
             <p>No! Case Shortcut is a lightweight and optimized native Mac app, written in Swift 5.</p>
             <h2 className="font-bold pt-8 text-lg pb-1">Supported cases</h2>
-            <ul className="list-disc list-inside pl-4">
-              <li>This is an example senctence. (sentence case)</li>
-              <li>this Is an Example Sentence. (title case)</li>
+            <ul className="list-disc list-inside pl-4 mb-4">
               <li>THIS IS AN EXAMPLE SENTENCE. (uppercase)</li>
+              <li>this Is an Example Sentence. (title case)</li>
               <li>this is an example sentence. (lowercase)</li>
             </ul>
+            <ul className="list-disc list-inside pl-4 mb-4">
+              <li>camelCase</li>
+              <li>hyphen-case</li>
+              <li>dot.case</li>
+            </ul>
+            <ul className="list-disc list-inside pl-4 mb-4">
+              <li>LAUNCH 🚀 CASE 🚀</li>
+              <li>CLAP👏CASE👏</li>
+            </ul>
           </div>
-          <div className="mt-24">
+          <div className="mt-16">
             <a href="https://larskarbo.no" target="_blank">
               <div
                 className=" flex items-center border border-gray-200 rounded p-2 px-4
