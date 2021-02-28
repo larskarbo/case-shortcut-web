@@ -12,7 +12,7 @@ export default function () {
         <div className="max-w-lg flex flex-col items-center px-8">
           <div className="w-full font-light text-gray-900">
             <h2 className="font-bold pt-8 text-lg pb-1 mt-36">Thank you for buying!</h2>
-            <p>You will receive an email soon with a download link.</p>
+            <p>You will receive an email soon with a download link. (check spam)</p>
             <p>
               If you don't receive an email, please{" "}
               <a className="underline text-blue-500" href="https://twitter.com/larskarbo">
