@@ -8,6 +8,12 @@ module.exports = {
     siteUrl: `https://caseshortcut.com`,
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-plausible`,
+      options: {
+        domain: `caseshortcut.com`,
+      },
+    },
     // {
     //   resolve: `gatsby-source-filesystem`,
     //   options: {
@@ -59,15 +65,6 @@ module.exports = {
       resolve: `gatsby-plugin-canonical-urls`,
       options: {
         siteUrl: `https://caseshortcut.com`,
-      },
-    },
-    {
-      resolve: `gatsby-plugin-google-gtag`,
-      options: {
-        // You can add multiple tracking ids and a pageview event will be fired for all of them.
-        trackingIds: [
-          "G-RTPJWENTLM", // Google Analytics / GA
-        ],
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
