@@ -102,16 +102,16 @@ export const Demo = () => {
         </div>
       </h1>
       <div className="hidden md:flex">
-        <Key active={CTR} className="mr-4" letter="⌃" text={"control"}></Key>
-        <Key active={OPT} className="mr-4" letter="⌥" text={"option"}></Key>
-        <Key active={CMD} className="mr-4" letter="⌘" text={"command"}></Key>
+        <Key active={CTR} className="mr-4" letter="⌃"></Key>
+        <Key active={OPT} className="mr-4" letter="⌥"></Key>
+        <Key active={CMD} className="mr-4" letter="⌘"></Key>
         <div className="pl-8"></div>
-        <Key center={true} className="mr-2" letter="◀" text={"command"}></Key>
+        <Key center={true} className="mr-2" letter="◀"></Key>
         <div className="mr-2">
           <Key active={up} center={true} defHeight={false} letter="▲" className={`w-16 h-8 mb-1`}></Key>
           <Key active={down} center={true} defHeight={false} letter="▼" className={`w-16 h-7 `}></Key>
         </div>
-        <Key center={true} className="mr-2" letter="▶" text={"command"}></Key>
+        <Key center={true} className="mr-2" letter="▶"></Key>
       </div>
     </>
   );
