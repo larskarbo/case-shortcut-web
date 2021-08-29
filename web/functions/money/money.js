@@ -10,7 +10,7 @@ app.use(bodyParser.json({
 
 const router = express.Router();
 
-router.post("/checkout", require("./checkout").handler);
+router.post("/checkout", require("../../src/pages/api/checkout").handler);
 router.post("/webhook", require("./webhook").handler);
 
 app.use("/.netlify/functions/money", router); // path must route to lambda

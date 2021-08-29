@@ -1,15 +1,11 @@
+import { QuickSeo } from "next-quick-seo";
 import React from "react";
-import "./welcomescreen.css";
 import { Key } from "../components/Demo";
-import { StaticImage } from "gatsby-plugin-image";
-import { Helmet } from 'react-helmet';
 
-export default function () {
+export default function WelcomeScreen() {
   return (
     <div className="flex flex-col items-center bg-gradient-to-tr from-gray-100 pt-0 to-yellow-50 min-h-screen">
-      <Helmet>
-        <title>Welcome to Case Shortcut</title>
-      </Helmet>
+      <QuickSeo title="Welcome to Case Shortcut!" />
 
       <div className="max-w-2xl">
         <div className="py-12 font-light max-w-lg m-auto text-center">
@@ -51,7 +47,7 @@ export default function () {
               If you didn't put the .app file in Applications, go ahead and quit Case Shortcut, move it there and
               restart the app.
             </p>
-            <StaticImage className="max-w-md" src="moveapp.png" alt="Move the app" />
+            <img className="max-w-md" src="/moveapp.png" alt="Move the app" />
             <h3 className="py-2 text-xl font-medium">2. Permissions</h3>
             <p className="py-2 ">
               Case Shortcut need some permissions to be able to work across different apps as a global shortcut.
@@ -61,19 +57,20 @@ export default function () {
               <i className="font-light">"Privacy"</i> → <i className="font-light">"Accessibility"</i> and check Case
               Shortcut.
             </p>
-            <StaticImage className="max-w-md" src="permissions.png" alt="Permissions" />
+            <img className="max-w-md" src="/permissions.png" alt="Permissions" />
             <h2 className="py-2 text-2xl font-semibold">Usage</h2>
 
             <p className="py-2 pb-4">
               Go to a textbox in any app, and mark some text. Then press the menu bar icon, and the case you want:
             </p>
 
-            <StaticImage className="max-w-md" src="barbar.png" alt="Permissions" />
-            <textarea defaultValue={`You can trY iT hERE!\n\nTry title case on me`} className="rounded p-4 my-4 h-36 border bg-white"></textarea>
+            <img className="max-w-md" src="/barbar.png" alt="Permissions" />
+            <textarea
+              defaultValue={`You can trY iT hERE!\n\nTry title case on me`}
+              className="rounded p-4 my-4 h-36 border bg-white"
+            ></textarea>
 
-            <p className="py-2 pb-4">
-              You can also use these combinations for UPPERCASE and lowercase
-            </p>
+            <p className="py-2 pb-4">You can also use these combinations for UPPERCASE and lowercase</p>
             <div className="flex items-center">
               <Key className="mr-4" letter="⌃"></Key>
               <Key className="mr-4" letter="⌥"></Key>

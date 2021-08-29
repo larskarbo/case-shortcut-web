@@ -1,17 +1,11 @@
-import { StaticImage } from "gatsby-plugin-image";
-import React, { useEffect, useRef, useState } from "react";
-
-import Helmet from "react-helmet";
-import { Demo } from "../components/Demo";
-import axios from "axios";
-import logo from "./logostroked.svg";
-import left from "./left.png";
-import right from "./right.png";
-import menu from "./menu.png";
 import { loadStripe } from "@stripe/stripe-js/pure";
+import axios from "axios";
+import React, { useState } from "react";
+import { Demo } from "../components/Demo";
+import Head from "next/head";
 export const BASE = `/.netlify/functions/`;
 
-export default function () {
+export default function Index() {
   const [loadingPay, setLoadingPay] = useState(false);
   const onPressPay = () => {
     setLoadingPay(true);
@@ -33,24 +27,41 @@ export default function () {
 
   return (
     <>
-      <div className="flex justify-between h-6" style={{
-        backgroundColor: "#FFD171"
-      }}>
-        <img alt="" className="hidden sm:block" src={left} style={{
-          // maxHeight: 30,
-          width: "auto"
-        }} />
-        <img alt="" src={right} style={{
-          // maxHeight: 30,
-          width: "auto"
-        }} />
-        <img className="absolute hidden md:block md:right-0 lg:right-36" alt="" src={menu} style={{
-          top: 10,
-          width: 200,
-        }} />
+      <div
+        className="flex justify-between h-6"
+        style={{
+          backgroundColor: "#FFD171",
+        }}
+      >
+        <img
+          alt=""
+          className="hidden sm:block"
+          src={"/left.png"}
+          style={{
+            // maxHeight: 30,
+            width: "auto",
+          }}
+        />
+        <img
+          alt=""
+          src={"/right.png"}
+          style={{
+            // maxHeight: 30,
+            width: "auto",
+          }}
+        />
+        <img
+          className="absolute hidden md:block md:right-0 lg:right-36"
+          alt=""
+          src={"/menu.png"}
+          style={{
+            top: 10,
+            width: 200,
+          }}
+        />
       </div>
       <div className="flex flex-col items-center bg-gradient-to-tr from-gray-100 pt-0 to-yellow-50 min-h-screen">
-        <Helmet>
+        <Head>
           <meta property="og:url" content="https://caseshortcut.com/" />
           <link rel="canonical" href="https://caseshortcut.com/" />
           <title>Case Shortcut - Transform text case instantly</title>
@@ -74,12 +85,12 @@ export default function () {
           <meta property="og:site_name" content="Case Shortcut" />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:creator" content={"larskarbo"} />
-        </Helmet>
+        </Head>
         <div className="max-w-lg flex flex-col items-center px-8">
-            <Demo />
+          <Demo />
           <div className="pt-12">
             <div className="flex flex-col items-center justify-center mb-8">
-              <img src={logo} className="w-24" />
+              <img src={"/logostroked.svg"} className="w-24" />
               <div className="text-xs font-medium pt-2">Case Shortcut.app</div>
             </div>
             <button

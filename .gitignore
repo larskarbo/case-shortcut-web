@@ -15,9 +15,7 @@ web-build/
 samplex.xcworkspace
 
 fpb-buyers-all.*
-.cache
-
-public
+.next
 
 *.mp4
 *.mov
@@ -258,3 +256,5 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+.vercel
