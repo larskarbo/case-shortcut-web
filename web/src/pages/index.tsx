@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Demo } from "../components/Demo";
 import Head from "next/head";
+import { QuickSeo } from "next-quick-seo";
 export const BASE = `/.netlify/functions/`;
 
 export default function Index() {
@@ -10,7 +11,7 @@ export default function Index() {
   const onPressPay = () => {
     setLoadingPay(true);
     axios
-      .post(BASE + "money/checkout", {
+      .post("/api/money/checkout", {
         priceId: location.href.includes("localhost")
           ? "price_1IOhhODRWTS9VCXGT14MivCz"
           : "price_1IOhYpDRWTS9VCXGI1J8vpMq",
@@ -65,27 +66,16 @@ export default function Index() {
           <meta property="og:url" content="https://caseshortcut.com/" />
           <link rel="canonical" href="https://caseshortcut.com/" />
           <title>Case Shortcut - Transform text case instantly</title>
-          <meta property="og:title" content={"Case Shortcut - Transform text case instantly"} />
-          <meta name="twitter:title" content={"Case Shortcut - Transform text case instantly"} />
-          <meta name="title" content={"Case Shortcut - Transform text case instantly"} />
-          <meta
-            name="description"
-            content="Case Shortcut lets you transform any case from any app using a global shortcut to UPPERCASE, lowercase, Title Case and more"
-          />
-          <meta
-            property="og:description"
-            content="Case Shortcut lets you transform any case from any app using a global shortcut to UPPERCASE, lowercase, Title Case and more"
-          />
-          <meta
-            name="twitter:description"
-            content="Case Shortcut lets you transform any case from any app using a global shortcut to UPPERCASE, lowercase, Title Case and more"
-          />
           {/* <meta property="og:image" content="https://caseshortcut.com/hero.png" />
           <meta name="twitter:image" content="https://caseshortcut.com/hero.png" /> */}
           <meta property="og:site_name" content="Case Shortcut" />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:creator" content={"larskarbo"} />
         </Head>
+        <QuickSeo
+          title="Case Shortcut - Transform text case instantly"
+          description="Case Shortcut lets you transform any case from any app using a global shortcut to UPPERCASE, lowercase, Title Case and more"
+        />
         <div className="max-w-lg flex flex-col items-center px-8">
           <Demo />
           <div className="pt-12">
