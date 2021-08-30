@@ -9,6 +9,8 @@ export const BASE = `/.netlify/functions/`;
 export default function Index() {
   const [loadingPay, setLoadingPay] = useState(false);
   const onPressPay = () => {
+    alert("Not available right now...")
+    return
     setLoadingPay(true);
     axios
       .post("/api/money/checkout", {
