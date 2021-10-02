@@ -1,0 +1,11 @@
+{
+	"name": "kopolops-generated",
+	"dependencies": {},
+	"devDependencies": {
+		"husky": "^7.0.0"
+	},
+	"scripts": {
+		"start": "vercel dev",
+		"preinstall": "echo \"Don't add packages here\" && exit 1"
+	}
+}
